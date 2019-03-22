@@ -1,5 +1,8 @@
 package com.company;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Código extraído del libro Java Structures y modificado por mí.
  *

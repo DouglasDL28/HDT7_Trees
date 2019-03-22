@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Stream;
@@ -20,6 +22,7 @@ public class Main {
         boolean wantsToContinue = true;
         Scanner input = new Scanner(System.in);
         BinaryTree myTree = new BinaryTree();
+        List<Association<String,String>> data = new ArrayList<>();
 
         do {
             System.out.println(menu);
@@ -46,6 +49,7 @@ public class Main {
                             if (parts.length == 2) {
                                 Association<String, String> element = new Association<>(parts[0], parts[1]);
                                 System.out.println(element);
+                                data.add(element);
                                 myTree.add(element);
 
                             }
@@ -73,14 +77,15 @@ public class Main {
 
                             for (String i : parts) {
                                 i = i.toUpperCase();
+                                for (Association<String,String> x: data){
+                                    if (i.equals(x.getKey().toUpperCase())){
+                                        System.out.println(x.getValue());
+                                    } else {
+                                        System.out.println("*" + i + "*");
+                                    }
+                                }
                             }
 
-                            if (parts.length == 2) {
-                                Association<String, String> element = new Association<>(parts[0], parts[1]);
-                                System.out.println(element);
-                                myTree.add(element);
-
-                            }
                         });
                     } catch (
                             IOException exception) {
